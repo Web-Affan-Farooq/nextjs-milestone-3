@@ -1,0 +1,110 @@
+      {
+        "id": 11,
+        "name": "Stylish Backpack",
+        "brand": "Urban Trek",
+        "short_description": "Durable backpack for everyday use.",
+        "long_description": "Comfortable and spacious with multiple compartments.",
+        "rating": 4.2,
+        "price": 79.99,
+        "availability": "In Stock",
+        "image": "" 
+      },
+      {
+        "id": 12,
+        "name": "Chef's Knife Set",
+        "brand": "Pro Cutlery",
+        "short_description": "High-quality knives for any kitchen.",
+        "long_description": "Set includes chef's knife, paring knife, and more.",
+        "rating": 4.8,
+        "price": 129.99,
+        "availability": "In Stock",
+        "image": "" 
+      },
+      {
+        "id": 13,
+        "name": "Planter Pot Set",
+        "brand": "Green Oasis",
+        "short_description": "Stylish pots for indoor plants.",
+        "long_description": "Set of three ceramic pots in various sizes.",
+        "rating": 4.5,
+        "price": 39.99,
+        "availability": "In Stock",
+        "image": "" 
+      },
+      {
+        "id": 14,
+        "name": "Wireless Earbuds",
+        "brand": "Audio Bliss",
+        "short_description": "True wireless earbuds with great sound.",
+        "long_description": "Enjoy your music with crystal-clear audio.",
+        "rating": 4.7,
+        "price": 99.99,
+        "availability": "In Stock",
+        "image": "" 
+      },
+      {
+        "id": 15,
+        "name": "Smart Watch",
+        "brand": "Tech Gear",
+        "short_description": "Fitness tracker with stylish design.",
+        "long_description": "Monitor your activity and receive notifications.",
+        "rating": 4.3,
+        "price": 149.99,
+        "availability": "In Stock",
+        "image": "" 
+      },
+      {
+        "id": 16,
+        "name": "Board Games Set",
+        "brand": "Family Fun",
+        "short_description": "Classic board games for family fun.",
+        "long_description": "Includes Monopoly, Scrabble, and more.",
+        "rating": 4.6,
+        "price": 59.99,
+        "availability": "In Stock",
+        "image": "" 
+      },
+      {
+        "id": 17,
+        "name": "Espresso Machine",
+        "brand": "Cafe Brew",
+        "short_description": "Compact espresso machine for home use.",
+        "long_description": "Brew delicious espresso and cappuccino.",
+        "rating": 4.9,
+        "price": 199.99,
+        "availability": "In Stock",
+        "image": "" 
+      },
+      {
+        "id": 18,
+        "name": "Electric Toothbrush",
+        "brand": "Oral Care",
+        "short_description": "Improved oral hygiene with sonic technology.",
+        "long_description": "Removes plaque and whitens teeth effectively.",
+        "rating": 4.4,
+        "price": 49.99,
+        "availability": "In Stock",
+        "image": "" 
+      },
+      {
+        "id": 19,
+        "name": "Portable Charger",
+        "brand": "Power Boost",
+        "short_description": "Keep your devices charged on the go.",
+        "long_description": "High-capacity power bank for smartphones and tablets.",
+        "rating": 4.5,
+        "price": 29.99,
+        "availability": "In Stock",
+        "image": "" 
+      },
+      {
+        "id": 20,
+        "name": "Sunglasses",
+        "brand": "Sun Shades",
+        "short_description": "Stylish sunglasses for sun protection.",
+        "long_description": "UV400 protection with polarized lenses.",
+        "rating": 4.1,
+        "price": 19.99,
+        "availability": "In Stock",
+        "image": "" 
+      }

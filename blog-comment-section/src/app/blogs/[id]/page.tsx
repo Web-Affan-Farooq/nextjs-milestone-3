@@ -48,12 +48,18 @@ const DynamicBlogSection = () => {
   
   const myRouter = usePathname().split("/")[2];
   const id = Number(myRouter);
-
+  
   const handleCommentAdd = () => {
-    setComments([...comments, comment])
-    setcomment("");
+    // if(comment !== "") {
+      setComments([...comments, comment])
+      setcomment("");
+    // }else {}
   }
 
+
+  const handleInputEnter = (e:React.KeyboardEvent<HTMLInputElement>) => {
+    console.log();
+  }
   return (
         <div className='p-10'>
           <div className='border-2 border-solid border-black'></div>
@@ -98,9 +104,20 @@ const DynamicBlogSection = () => {
     
             <br />
             <div className='flex flex-row flex-wrap gap-3 p-2 items-center justify-center max-md:justify-between'>
-              <input type="text" name='comment' id='comment' placeholder='Enter your comment' className='w-[70vw] px-[20px] py-2' onChange={(e) => {
+              <input type="text" name='comment' id='comment' placeholder='Enter your comment' className='w-[70vw] px-[20px] py-2' 
+              onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
                 setcomment(e.target.value);
-              }} value={comment}/>
+                console.log(e.target.value);
+              }}
+              onKeyDown={(e:React.KeyboardEvent<HTMLInputElement>) => {
+                if(e.code === "Enter") {
+                // setComments([...comments, comment])
+                // setcomment("");
+                handleCommentAdd();
+                console.log(comment);
+                
+                } else {}
+              }}/>
               <button type="button" className='rounded-lg bg-green-700 text-white text-[15px] px-[20px] py-[10px]' onClick={handleCommentAdd}>Comment</button>
             </div>
           </div>
