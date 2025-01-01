@@ -53,11 +53,6 @@ const ProductDynamicPage = () => {
   const handleAddToCart = () => {
     setCart([...cart, product])
   }
-
-  useEffect(() => {
-    console.log(cart);
-  },[cart]);
-
   
   return (
     <main>

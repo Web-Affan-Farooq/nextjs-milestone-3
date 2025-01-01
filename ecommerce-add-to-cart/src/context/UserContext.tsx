@@ -1,12 +1,13 @@
 "use client";
 
 import React, {createContext, useState} from 'react';
+import { Product } from '@/logic/type_card';
 
-export const CartContext = createContext<[any[], React.Dispatch<React.SetStateAction<any[]>>]>( [[], () => {}] );
+export const CartContext = createContext<[Product[], React.Dispatch<React.SetStateAction<any[]>>]>( [[], () => {}] );
 
 const CartContextProvider = ({children}:{children:React.ReactNode}) => {
 
-  const [cart, setcart] = useState<any[]>([]);
+  const [cart, setcart] = useState<Product[]>([]);
 
   return (
     <CartContext.Provider value={[cart, setcart]}>

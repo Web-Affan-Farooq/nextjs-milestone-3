@@ -1,3 +1,4 @@
+// Card for products page
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,7 +16,7 @@ interface Icard {
   id:number;
 }
 
-const Card = ({name,brand, shortDescription, longDescription, availability, price, rating, image, id}:Icard) => {
+const Card = ({name, shortDescription, price, image, id}:Icard) => {
   return (
     <div className='w-[260px] px-[20px] py-[20px] rounded-lg flex flex-col gap-2 card max-sm:w-[200px] max-[420px]:w-[180px] bg-white max-sm:px-[10px] max-sm:py-[12px]'>
         <Image src={image} alt='product' width={250} height={250} className=''/>

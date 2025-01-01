@@ -1,28 +1,28 @@
 "use client";
 
-import React,{useState, useEffect} from 'react';
+import React,{useState} from 'react';
 import Link from 'next/link';
 
 const Section_2 = () => {
-const [apiData, setapiData] = useState();
+// const [apiData, setapiData] = useState();
 
-useEffect(() => {
-const getData = async () => {
-    try {
-        const response = await fetch('https://fakestoreapi.com/products/');
-        const data = await response.json();
+// useEffect(() => {
+// const getData = async () => {
+//     try {
+//         const response = await fetch('https://fakestoreapi.com/products/');
+//         const data = await response.json();
 
-        setapiData(data)
-        console.log(data);
+//         setapiData(data)
         
-    }
-    catch(err) {
-        console.error(err);
-    }
-}
-getData();
+//     }
+//     catch(err) {
+//         console.error(err);
+//     }
+// }
+// getData();
 
-},[]);
+// },[]);
+
   return (
     <section>
         <h1 className='text-[30px] font-bold font-oswald uppercase'>Explore our products</h1>
