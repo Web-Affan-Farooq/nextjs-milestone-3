@@ -1,1 +1,1 @@
-## Assignment blog comment section implementation using  react states
+## Assignment blog comment section implementation using react states
