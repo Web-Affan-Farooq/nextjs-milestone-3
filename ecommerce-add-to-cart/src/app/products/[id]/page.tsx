@@ -2,32 +2,17 @@
 
 import React,{useState, useEffect, useContext} from 'react';
 import Image from 'next/image';
+import toast, {Toaster} from 'react-hot-toast';
 import { usePathname } from 'next/navigation';
 import { Product } from '@/logic/type_card';
 import { CartContext } from '@/context/UserContext';
 
-interface Icard {
-  name: string;
-  shortDescription: string;
-  longDescription: string;
-  availability: string;
-  price: number;
-  rating: number;
-  image: string;
-  brand: string;
-  id: number;
+const notify = (statement:string) => {
+  return toast.custom(<div className='bg-white py-[10px] absolute top-20 px-[25px] transition-all duration-700 ease-in-out text-gray-600'><i className="text-green-400 fa-solid fa-circle-check"></i> {statement}</div>,{
+      position:"top-left",
+      duration:2000
+  })
 }
-
-// const getData = async (path:string) => {
-//   try {
-//       const response = await fetch(`/api/get-products/${path}`);
-//       const data = await response.json();
-//       return data;
-//   }
-//   catch(err) {
-//       console.error(err);
-//   }
-// }
 const ProductDynamicPage = () => {
   const [product, setproduct] = useState<Product>();
   const [cart, setCart] = useContext(CartContext);  
@@ -48,15 +33,22 @@ const ProductDynamicPage = () => {
     getData();
  
     
-  },[]);
+  },[path]);
 
   const handleAddToCart = () => {
-    setCart([...cart, product])
+    if(product) {
+      setCart([...cart, product]);
+      notify("Product added to your cart successfully");
+    }
+    else {
+      notify("Still loading product");
+    }
   }
   
   return (
     <main>
       <article>
+        <Toaster reverseOrder={true}/>
         <section className='flex flex-col py-20 justify-center items-center bg-[#e6e7e8]'>
 
           {product? (

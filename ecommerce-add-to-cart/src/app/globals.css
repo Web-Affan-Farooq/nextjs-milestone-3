@@ -11,16 +11,12 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --peach-color:#fcf7f0;
+    --purple-color:#3835d3;
+    --orange-color:orangered;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
 .shadow-card {
   box-shadow: 0px 0px 120px 10px ;
 }

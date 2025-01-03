@@ -1,8 +1,11 @@
 // payment processing form component
 
 "use client";
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import toast , {Toaster} from 'react-hot-toast';
 import Image from 'next/image';
+import { CartContext } from '@/context/UserContext';
+import { useRouter } from 'next/navigation';
 
 interface IPayment {
   userEmail:string;
@@ -14,37 +17,72 @@ interface IPayment {
   accountNumber:string;
   paymentType:string;
 }
+const notify = (statement:string) => {
+  return toast.custom(<div className='bg-white py-[10px] absolute top-20 px-[25px] transition-all duration-700 ease-in-out text-gray-600'><i className="text-green-400 fa-solid fa-circle-check"></i> {statement}</div>,{
+      position:"top-left",
+      duration:2000
+  })
+}
+
 
 const Form = () => {
-    const [deliveryOption, setdeliveryOption] = useState("Ship");
+    const [deliveryOption, setdeliveryOption] = useState("");
+    const [cart] = useContext(CartContext);
     const [payment, setpayment] = useState("");
+    const [total, settotal] = useState(0);
+    const router = useRouter();
     const [paymentData, setpaymentData] = useState<IPayment>({
-      userEmail:"", //done
-      customerName:"",//done
-      phoneNumber:"",//done
-      country:"",//done
-      bankName:"",//done
-      shipmentType:"",//done
-      accountNumber:"",//done
-      paymentType:"",//done
+      userEmail:"", 
+      customerName:"",
+      phoneNumber:"",
+      country:"",
+      bankName:"",
+      shipmentType:"",
+      accountNumber:"",
+      paymentType:"",
     });
     
     useEffect(() => {
-      setpaymentData({...paymentData, paymentType:payment});
-    }, [payment]);
+      setpaymentData(
+        (prevData) => ({...prevData, paymentType:payment}) 
+      )
+    }, [payment]); 
+
     useEffect(() => {
-      setpaymentData({...paymentData, shipmentType:deliveryOption})
-    },[deliveryOption])
+      setpaymentData(
+        (prevData) => ({...prevData, shipmentType:deliveryOption}) 
+      )
+    },[deliveryOption]); 
+
+    useEffect(() => {
+      const totalIds = cart.reduce((total, item) => total + item.price, 0);
+      settotal(totalIds)
+        },[cart]);
 
     const handleFrom = (e:React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      // console.log(paymentData);
 
-      alert("Thanks for purchasing")
+      notify("Payment successfull");
+      // console.log(paymentData);
+      
+
+      setpaymentData({...paymentData, userEmail:"", 
+        customerName:"",
+        phoneNumber:"",
+        country:"",
+        bankName:"",
+        shipmentType:"",
+        accountNumber:"",
+        paymentType:""});
+        
+        router.push("/");
     }
+
   return (
 <div className='w-[330px] rounded-md p-[10px] '>
+  <Toaster/>
           <h1 className='text-center text-[20px] font-bold'>Checkout</h1>
+          <div className='text-center'>Total amount <span className='text-[24px] text-[orangered] font-bold '> ${total.toFixed()}</span></div>
           <br />
           <form action="" className='flex flex-col flex-nowrap justify-center items-start gap-2' onSubmit={handleFrom}>
             <label htmlFor="Email" id='email'>Your email</label>
@@ -72,21 +110,20 @@ const Form = () => {
             <label htmlFor="Country" id='country'>Select country</label>
 
               <select name="country" id="country" className='w-[280px] px-[15px] py-[7px] rounded-md bg-white' onChange={(e:React.ChangeEvent<HTMLSelectElement>) => {
-              setpaymentData({...paymentData, country:e.target.value})
+              setpaymentData((prevData) => ({...prevData, country:e.target.value}));
             }}>
-                <option value="example-1">Pakistan</option>
-                <option value="bank example-1">India</option>
-                <option value="bank example-1">Iran</option>
+                <option value="Pakistan">Pakistan</option>
+                <option value="India">India</option>
+                <option value="Iran">Iran</option>
               </select>
 
             <div>
               <label htmlFor="Select shipment">Select shipment</label>
               <div className='flex flex-row flex-nowrap justify-center items-center gap-2'>
-                <div className={`border-[1.5px] border-solid border-gray-400 text-[17px] font-bold rounded-md py-[8px] px-[18px] ${deliveryOption === "Ship"? "border-7 border-solid border-blue-800": ""}`} onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+                <div className={`border-[2px] text-[17px] font-bold rounded-md py-[8px] px-[18px] ${deliveryOption === "Ship" ? "border-yellow-600": "border-transparent"}`} onClick={() => {
                   setdeliveryOption("Ship")
-
                 }}><i className="fa-solid fa-truck"></i> Ship</div>
-                <div className={`border-[1.5px] border-solid border-gray-400 text-[17px] font-bold rounded-md py-[8px] px-[18px] ${deliveryOption === "Pickup"? "border-7 border-solid border-blue-800": ""}`} onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+                <div className={`border-[2px] border-solid text-[17px] font-bold rounded-md py-[8px] px-[18px] ${deliveryOption === "Pickup"? "border-yellow-600": "border-transparent"}`} onClick={() => {
                   setdeliveryOption("Pickup")
 
                 }}><i className="fa-solid fa-location-dot"></i> Pickup</div>
@@ -96,7 +133,7 @@ const Form = () => {
             <label htmlFor="account number" id='account-number'>
               Account number</label>
             <input type="text" name='accountNumber' id='account-number' placeholder='0000-0000' required className='w-[280px] px-[15px] py-[7px] rounded-md' onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
-              setpaymentData({...paymentData, country:e.target.value})
+              setpaymentData((prevData) => ({...prevData, accountNumber:e.target.value}))
             }}/>
 
 
@@ -104,27 +141,28 @@ const Form = () => {
               <label htmlFor="Select shipment">Select payment</label>
               <div className=' flex flex-row flex-wrap justify-center items-center gap-2'>
                 <div className={`text-[17px] font-bold rounded-md px-[10px] `}>
-                  <Image src={"/images/icons/paypal.svg"} alt='paypal' width={60} height={60} className={`${payment === "Paypal"? "border-7 border-solid border-blue-800": ""}`} onClick={(e:React.MouseEvent<HTMLImageElement>) => {
+                  <Image src={"/images/icons/paypal.svg"} alt='paypal' width={60} height={60} className={`rounded-md border-[2px] border-solid ${payment === "Paypal"? "border-yellow-600": "border-transparent"}`} onClick={() => {
                     setpayment("Paypal")
                   }}/>
                 </div>
                 <div className={`text-[17px] font-bold rounded-md px-[10px] `}>
-                  <Image src={"/images/icons/master-card.svg"} alt='paypal' width={60} height={60} className={`${payment === "Master card"? "border-7 border-solid border-blue-800": ""}`} onClick={(e:React.MouseEvent<HTMLImageElement>) => {
+                  <Image src={"/images/icons/master-card.svg"} alt='paypal' width={60} height={60} className={`rounded-md border-[2px] border-solid ${payment === "Master card"? "border-yellow-600": "border-transparent"}`} onClick={() => {
                     setpayment("Master card")
                   }}/>
                 </div>
                 <div className={`text-[17px] font-bold rounded-md px-[10px]`}>
-                  <Image src={"/images/icons/stripe.svg"} alt='paypal' width={60} height={60} className={`${payment === "Stripe"? "border-7 border-solid border-blue-800": ""}`} onClick={(e:React.MouseEvent<HTMLImageElement>) => {
+                  <Image src={"/images/icons/stripe.svg"} alt='paypal' width={60} height={60} className={`rounded-md border-[2px] border-solid ${payment === "Stripe"? "border-yellow-600": "border-transparent"}`} onClick={() => {
                     setpayment("Stripe")
                   }}/>
                 </div>
                 <div className={`text-[17px] font-bold rounded-md px-[10px] `}>
-                  <Image src={"/images/icons/visa.svg"} alt='visa' width={60} height={60} className={`${payment === "Visa"? "border-7 border-solid border-blue-800": ""}`} onClick={(e:React.MouseEvent<HTMLImageElement>) => {
+                  <Image src={"/images/icons/visa.svg"} alt='visa' width={60} height={60} className={`rounded-md border-[2px] border-solid ${payment === "Visa"? "border-yellow-600": "border-transparent"}`} onClick={() => {
                     setpayment("Visa")
                   }}/>
                 </div>
               </div>
             </div>
+            <br />
             <button type="submit" className='bg-[#3835d3] font-semibold p-[10px] text-white text-[15px] rounded-lg'><i className={`fa-solid fa-cart-shopping`}></i> Confirm purchase</button>
           </form>
         </div>  )

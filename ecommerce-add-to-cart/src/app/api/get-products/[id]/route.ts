@@ -5,7 +5,7 @@ interface Params {
     params:Promise<{id:string}>
 }
 export async function GET(req:NextRequest, {params}:Params) {
-    let {id} = (await params);
+    const {id} = (await params);
     console.log(id);
     
     return Response.json(Products[Number(id)-1]);

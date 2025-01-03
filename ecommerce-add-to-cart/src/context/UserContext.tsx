@@ -3,7 +3,7 @@
 import React, {createContext, useState} from 'react';
 import { Product } from '@/logic/type_card';
 
-export const CartContext = createContext<[Product[], React.Dispatch<React.SetStateAction<any[]>>]>( [[], () => {}] );
+export const CartContext = createContext<[Product[], React.Dispatch<React.SetStateAction<Product[]>>]>( [[], () => {}] );
 
 const CartContextProvider = ({children}:{children:React.ReactNode}) => {
 

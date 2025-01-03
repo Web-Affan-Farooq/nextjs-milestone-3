@@ -1,3 +1,5 @@
+// main cart route page
+
 "use client";
 
 import { CartContext } from '@/context/UserContext';
@@ -6,38 +8,18 @@ import { Product } from '@/logic/type_card';
 import Form from './Form';
 import Card_cart from './Card-cart';
 
-
 const Cart = () => {
 
   const [productsInCart, setproductsInCart] = useState<Product[]>();
   const [cart] = useContext(CartContext);
-
-  let originalCart:Product[] = [];
-  /*
   
-array.forEach((data, index) => {
-    if (
-        array.some(
-            (item, i) =>
-                i < index && 
-                item.id === data.id && 
-                item.name === data.name
-        )
-    ) {
-        console.log("duplicate copy found");
-    } else {
-        console.log(data);
-    }
-});
-   */
-
-
   useEffect(() => {
     setproductsInCart(cart);
-  }, []);
+  },[cart]);
+
   useEffect(() => {
     setproductsInCart(cart)
-  },[cart])
+  }, [cart])
 
   return (
     <section className='py-36 px-[20px]'>
@@ -50,11 +32,11 @@ array.forEach((data, index) => {
             <br />
             <br />
 
-            <div className='flex flex-row flex-wrap justify-center items-start gap-3 m-auto max-md:flex-col max-md:items-center max-md:gap-10 bg-[#e6e7e8]'>{/*border-2 border-solid border-black */}
+            <div className='flex flex-row flex-wrap justify-center items-start gap-3 m-auto max-md:flex-col max-md:items-center max-md:gap-10 bg-[#e6e7e8] py-[25px]'>{/*border-2 border-solid border-black */}
 
               <div className='flex flex-col flex-wrap justify-start items-start gap-3'>
-                {productsInCart.map((product: Product , index:number) => {
-                  return <Card_cart name={product.name} shortDescriptionForCartProduct={product.short_description} image={product.image} key={index} productId={product.id}/>
+                {productsInCart.map((product: Product, index: number) => {
+                  return <Card_cart name={product.name} shortDescriptionForCartProduct={product.short_description} image={product.image} key={index} productId={product.id} />
                 })}
               </div>
 
@@ -69,20 +51,3 @@ array.forEach((data, index) => {
 }
 
 export default Cart;
-
-/*
-Ship or pickup
-email
-firstname
-start typing
-phonenumber
-e transfer or online
-bank name
-country
-
-*/
-
-/*
- 
-
- */

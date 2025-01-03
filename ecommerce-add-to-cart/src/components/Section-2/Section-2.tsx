@@ -1,38 +1,45 @@
 "use client";
 
-import React,{useState} from 'react';
-import Link from 'next/link';
+import React from 'react';
+import Image from 'next/image';
 
 const Section_2 = () => {
-// const [apiData, setapiData] = useState();
-
-// useEffect(() => {
-// const getData = async () => {
-//     try {
-//         const response = await fetch('https://fakestoreapi.com/products/');
-//         const data = await response.json();
-
-//         setapiData(data)
-        
-//     }
-//     catch(err) {
-//         console.error(err);
-//     }
-// }
-// getData();
-
-// },[]);
 
   return (
-    <section>
-        <h1 className='text-[30px] font-bold font-oswald uppercase'>Explore our products</h1>
-        <br />
-        <div className='flex flex-row flex-nowrap justify-center items-center gap-3'>
-          
-        </div>
-        <br />
-        <br />
-        <p className='text-center'><Link href={"/products"} className='text-blue-600 font-bold text-[15px] '>See More ...</Link></p>
+    <section className='p-[10px] py-20 flex flex-col flex-wrap justify-center items-center md:flex-row sm:gap-5 max-sm:gap-5'>
+
+      <div className='flex flex-col flex-wrap gap-2 md:w-1/2'>
+        
+
+      <div className='rounded-md w-full p-3 flex flex-row flex-nowrap justify-between items-center max-md:w-[70vw] max-sm:w-[90vw]'>
+        <Image src={"/images/img-8.png"} alt='poster' width={100} height={100}/>    
+
+        <div>
+        <h2 className='text-left font-bold text-[20px]'>Find The Perfect Fit</h2>
+          <p className='text-[15px] text-gray-700'>Lorem ipsum, dolor sit amet consectetur dit aliquid eum repudiandae omnis, labore cupiditate, ratione </p>
+          </div> 
+       </div>
+
+       <div className='rounded-md w-full p-3 flex flex-row flex-nowrap justify-between items-center max-md:w-[70vw] max-sm:w-[90vw]'>
+        <Image src={"/images/img-8.png"} alt='poster' width={100} height={100}/>    
+
+        <div>
+        <h2 className='text-left font-bold text-[20px]'>Find The Perfect Fit</h2>
+          <p className='text-[15px] text-gray-700'>Lorem ipsum, dolor sit amet consectetur dit aliquid eum repudiandae omnis, labore cupiditate, ratione </p>
+          </div> 
+       </div>
+
+       <div className='rounded-md w-full p-3 flex flex-row flex-nowrap justify-between items-center max-md:w-[70vw] max-sm:w-[90vw]'>
+        <Image src={"/images/img-8.png"} alt='poster' width={100} height={100}/>    
+
+        <div>
+        <h2 className='text-left font-bold text-[20px]'>Find The Perfect Fit</h2>
+          <p className='text-[15px] text-gray-700'>Lorem ipsum, dolor sit amet consectetur dit aliquid eum repudiandae omnis, labore cupiditate, ratione </p>
+          </div> 
+       </div>
+       
+      </div>
+      <Image src={"/images/img-7.png"} alt='poster' width={300} height={300} className='lg:w-[400px] sm:gap-5'/>
     </section>
   )
 }

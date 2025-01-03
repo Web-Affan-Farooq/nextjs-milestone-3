@@ -9,12 +9,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        purple:"var(--purple-color)",
+        orange:"var(--orange-color)",
+        peach:"var(--peach-color)"
       },
       fontFamily: {
         oswald:"var(--font-oswald)",
         roboto:"var(--font-roboto)",
+      },
+      backgroundColor: {
+        purple:"var(--purple-color)",
+        orange:"var(--orange-color)",
+        peach:"var(--peach-color)"
       }
     },
   },
