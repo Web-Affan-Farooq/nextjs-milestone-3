@@ -22,5 +22,5 @@ Integrate basic API routes for handling products data.
 
 <ul>
 <li> <a href="./blog-comment-section/src/">Check The code</li>
-<li><a href="https://blog-application-comment-section.vercel.app">Deployment Link</a></li>
+<li><a href="https://nike-react-mocha.vercel.app/">Deployment Link</a></li>
 </ul>
